@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BengaApp — S.O.S Universel</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Leaflet.js pour la cartographie -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Application Mobile (PWA) -->
+    <link rel="manifest" href="/static/manifest.json">
+    <meta name="theme-color" content="#3b8eff">
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/3208/3208940.png">
+
+    <!-- Styles CSS -->
+    <link rel="stylesheet" href="/static/css/styles.css?v=2.1" />
+
+    <script>
+        window.onerror = function(msg, url, lineNo, columnNo, error) {
+            document.body.innerHTML += '<div style="position:fixed;top:0;left:0;width:100vw;background:red;color:white;z-index:999999;padding:20px;font-size:24px;">CRASH JS: ' + msg + '<br>Ligne: ' + lineNo + '</div>';
+            return false;
+        };
+    </script>
+</head>
+<body>
+    <!-- Message Notification -->
+    <div id="toast" class="toast hidden">Connexion perdue</div>
+
+    <div class="dashboard">
+        <!-- BARRE LATÉRALE GAUCHE (Main App) -->
+        <aside id="sidebar-app">
+            <div class="sidebar-app-header">
+                <h1>🚨 BengaApp</h1>
+                <p class="slogan">"BengaApp un code unique pour sauver des vies"</p>
+            </div>
+            
+            <div class="sidebar-tabs">
+                <button class="side-tab active" onclick="switchTab(1)" id="tab-1">SOS</button>
+                <button class="side-tab" onclick="switchTab(2)" id="tab-2">Flux d'Urgences</button>
+                <button class="side-tab" onclick="switchTab(3)" id="tab-3">Paramètres</button>
+                <button class="side-tab" onclick="switchTab(4)" id="tab-4">Langue</button>
+            </div>
+
+            <!-- CONTENU DYNAMIQUE DES ONGLETS -->
+            <div id="sidebar-content" class="sidebar-content">
+                <!-- Les vues sont générées dynamiquement dans app.js -->
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT (CARTE) -->
+        <main id="main-view">
+            <section id="map-container">
+                <div id="map"></div>
+                <div class="map-overlay">
+                    <div class="map-badge">📍 OpenStreetMap — Kinshasa (RDC)</div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.0/socket.io.min.js"></script>
+    <script src="/static/js/app.js?v=2.1"></script>
+</body>
+</html>
